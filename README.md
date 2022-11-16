@@ -1,6 +1,6 @@
 # Reactions Helper Bot
 
-Data is stored in ~/.reactionshelper.json
+Data is stored in ~/.reactionshelperbot.json
 
 Requires Discord token to run, set REACTIONS_HELPER_TOKEN in environment variables or .env file
 
