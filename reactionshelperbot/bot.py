@@ -46,7 +46,7 @@ class ReactionsHelper(Bot):
 
     def run_with_token(self):
         try:
-            super().run(token=self._config.token)
+            super().run(self._config.token)
         except Exception as e:
             _log.error('Token is wrong. Specify token in ~/.reactionshelperbot.json')
             raise e
