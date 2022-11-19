@@ -1,7 +1,7 @@
 from asyncio import sleep
 from typing import Union, Optional
 
-from discord import Reaction, Member, TextChannel, User, Intents, HTTPException
+from discord import Reaction, Member, TextChannel, User, Intents, HTTPException, LoginFailure
 from discord.ext import commands
 from discord.ext.commands import Bot, CommandError, UserInputError, CommandNotFound
 
@@ -47,9 +47,9 @@ class ReactionsHelper(Bot):
     def run_with_token(self):
         try:
             super().run(self._config.token)
-        except Exception as e:
-            _log.error('Token is wrong. Specify token in ~/.reactionshelperbot.json')
-            raise e
+        except LoginFailure as e:
+            _log.error(str(e))
+            _log.error('Specify token in ~/.reactionshelperbot.json')
 
     async def setup_hook(self):
         # Channels
