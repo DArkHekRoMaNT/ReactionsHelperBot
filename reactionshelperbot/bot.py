@@ -22,6 +22,8 @@ class ReactionsHelper(Bot):
         super().__init__(intents=intents, command_prefix=self._config.command_prefix)
         self.help_command.add_check(self.has_permissions())
 
+        self.setup_commands()
+
     async def on_ready(self):
         _log.info(f'{self.user} ready')
 
@@ -47,7 +49,7 @@ class ReactionsHelper(Bot):
             _log.error(str(e))
             _log.error('Specify token in ~/.reactionshelperbot.json')
 
-    async def setup_hook(self):
+    def setup_commands(self):
         # Channels
         @self.group(name='channels')
         @self.has_permissions()
