@@ -13,5 +13,3 @@ Requires Discord token to run, set it to ~/.reactionshelperbot.json after first 
 Required permission integer to work 76864 (Read Messages/View Channels, Send Messages, Manage Messages, Read Message History, Add Reactions)
 
 Permissions for use commands: Manage Messages
-
-Data is stored in ~/.reactionshelperbot.json
