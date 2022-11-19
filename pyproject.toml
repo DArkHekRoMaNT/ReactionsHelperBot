@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=40.8.0", "discord>=1.7.3", "python-dotenv", "asyncio"]
+requires = ["setuptools>=40.8.0", "discord>=1.7.3", "python-dotenv>=0.21.0", "asyncio"]
 build-backend = "setuptools.build_meta"
 
 [project]
