@@ -8,8 +8,10 @@ Preview: https://youtu.be/BxK2OwG5jsA
 | Remove | pip3 uninstall reactionshelperbot |
 | Run | python3 -m reactionshelperbot |
 
-Requires Discord token to run, set REACTIONS_HELPER_TOKEN in environment variables or .env file
+Requires Discord token to run, set it to ~/.reactionshelperbot.json after first run
 
-Required permission integer to work 76864
+Required permission integer to work 76864 (Read Messages/View Channels, Send Messages, Manage Messages, Read Message History, Add Reactions)
+
+Permissions for use commands: Manage Messages
 
 Data is stored in ~/.reactionshelperbot.json
