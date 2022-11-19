@@ -4,7 +4,7 @@ Preview: https://youtu.be/BxK2OwG5jsA
 
 |   |   |
 | --- | --- |
-| Install | pip install git+https://github.com/DArkHekRoMaNT/ReactionsHelperBot |
+| Install | pip install --upgrade pip <br> pip install git+https://github.com/DArkHekRoMaNT/ReactionsHelperBot |
 | Remove | pip uninstall reactionshelperbot |
 | Run | python -m reactionshelperbot |
 
