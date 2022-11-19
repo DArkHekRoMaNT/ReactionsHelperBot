@@ -19,7 +19,6 @@ class ReactionsHelper(Bot):
 
         intents = Intents.default()
         intents.messages = True
-        intents.message_content = True
         super().__init__(intents=intents, command_prefix=self._config.command_prefix)
         self.help_command.add_check(self.has_permissions())
 
@@ -46,7 +45,11 @@ class ReactionsHelper(Bot):
         return commands.has_permissions(manage_messages=True)
 
     def run_with_token(self):
-        super().run(token=self._config.token)
+        try:
+            super().run(token=self._config.token)
+        except Exception as e:
+            _log.error('Token is wrong. Specify token in ~/.reactionshelperbot.json')
+            raise e
 
     async def setup_hook(self):
         # Channels
