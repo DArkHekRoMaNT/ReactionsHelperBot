@@ -4,9 +4,9 @@ Preview: https://youtu.be/BxK2OwG5jsA
 
 |   |   |
 | --- | --- |
-| Install | pip install --upgrade pip <br> pip install git+https://github.com/DArkHekRoMaNT/ReactionsHelperBot |
-| Remove | pip uninstall reactionshelperbot |
-| Run | python -m reactionshelperbot |
+| Install | pip3 install git+https://github.com/DArkHekRoMaNT/ReactionsHelperBot |
+| Remove | pip3 uninstall reactionshelperbot |
+| Run | python3 -m reactionshelperbot |
 
 Requires Discord token to run, set REACTIONS_HELPER_TOKEN in environment variables or .env file
 
