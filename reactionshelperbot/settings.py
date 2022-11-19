@@ -4,6 +4,7 @@ import logging
 
 _log = logging.getLogger(__name__)
 
+
 class Settings:
     def __init__(self):
         self.reactions = list()
