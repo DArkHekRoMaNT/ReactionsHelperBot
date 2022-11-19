@@ -1,5 +1,5 @@
 from asyncio import sleep
-from typing import Union, Optional
+from typing import Union
 
 from discord import Reaction, Member, TextChannel, User, Intents, HTTPException, LoginFailure
 from discord.ext import commands
@@ -20,7 +20,7 @@ class ReactionsHelper(Bot):
         intents = Intents.default()
         intents.messages = True
         super().__init__(intents=intents, command_prefix=self._config.command_prefix)
-        self.help_command.add_check(self.has_permissions())
+        self.help_command.add_check(commands.has_permissions(manage_messages=True))
 
     async def on_ready(self):
         _log.info(f'{self.user} ready')
@@ -40,10 +40,6 @@ class ReactionsHelper(Bot):
             if self._config.reactions.__contains__(str(reaction.emoji)):
                 await reaction.message.remove_reaction(reaction, user)
 
-    @staticmethod
-    def has_permissions():
-        return commands.has_permissions(manage_messages=True)
-
     def run_with_token(self):
         try:
             super().run(self._config.token)
@@ -54,7 +50,7 @@ class ReactionsHelper(Bot):
     async def setup_hook(self):
         # Channels
         @self.group(name='channels')
-        @self.has_permissions()
+        @commands.has_permissions(manage_messages=True)
         async def channels(ctx: Union[TextChannel, Member]):
             if ctx.invoked_subcommand is None:
                 await show_channels(ctx)
@@ -122,7 +118,7 @@ class ReactionsHelper(Bot):
 
         # Reactions
         @self.group(name='reactions')
-        @self.has_permissions()
+        @commands.has_permissions(manage_messages=True)
         async def reactions(ctx: Union[TextChannel, Member]):
             if ctx.invoked_subcommand is None:
                 await show_reactions(ctx)
