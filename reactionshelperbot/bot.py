@@ -1,5 +1,5 @@
 from asyncio import sleep
-from typing import Union
+from typing import Union, Optional
 
 from discord import Reaction, Member, TextChannel, User, Intents, HTTPException
 from discord.ext import commands
@@ -44,6 +44,9 @@ class ReactionsHelper(Bot):
     @staticmethod
     def has_permissions():
         return commands.has_permissions(manage_messages=True)
+
+    def run_with_token(self):
+        super().run(token=self._config.token)
 
     async def setup_hook(self):
         # Channels

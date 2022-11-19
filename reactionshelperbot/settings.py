@@ -7,6 +7,7 @@ _log = logging.getLogger(__name__)
 
 class Settings:
     def __init__(self):
+        self.token = ''
         self.reactions = list()
         self.channels = list()
         self.command_prefix = '$'

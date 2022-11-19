@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=40.8.0", "discord>=1.7.3", "python-dotenv>=0.21.0", "asyncio"]
+requires = ["setuptools>=40.8.0", "discord>=1.7.3", "asyncio"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "reactionshelperbot"
-version = "1.0.3"
+version = "1.0.4"
 authors = [
   { name="DArkHekRoMaNT", email="darkhekromant@yandex.ru" },
 ]
