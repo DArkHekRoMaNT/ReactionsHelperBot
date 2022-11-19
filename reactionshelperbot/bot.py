@@ -20,7 +20,7 @@ class ReactionsHelper(Bot):
         intents = Intents.default()
         intents.messages = True
         super().__init__(intents=intents, command_prefix=self._config.command_prefix)
-        self.help_command.add_check(commands.has_permissions(manage_messages=True))
+        self.help_command.add_check(self.has_permissions())
 
     async def on_ready(self):
         _log.info(f'{self.user} ready')
@@ -28,17 +28,17 @@ class ReactionsHelper(Bot):
     async def on_command_error(self, ctx, exception: CommandError):
         if isinstance(exception, UserInputError):
             await ctx.send(str(exception))
-        elif isinstance(exception, CommandNotFound):
-            pass
-        elif isinstance(exception, CommandError):
-            _log.error(str(exception))
         else:
-            await super().on_command_error(ctx, exception)
+            _log.error(str(exception))
 
     async def on_reaction_add(self, reaction: Reaction, user: Union[Member, User]):
         if self._config.channels.__contains__(reaction.message.channel.id):
             if self._config.reactions.__contains__(str(reaction.emoji)):
                 await reaction.message.remove_reaction(reaction, user)
+
+    @staticmethod
+    def has_permissions():
+        return commands.has_permissions(manage_messages=True)
 
     def run_with_token(self):
         try:
@@ -50,7 +50,7 @@ class ReactionsHelper(Bot):
     async def setup_hook(self):
         # Channels
         @self.group(name='channels')
-        @commands.has_permissions(manage_messages=True)
+        @self.has_permissions()
         async def channels(ctx: Union[TextChannel, Member]):
             if ctx.invoked_subcommand is None:
                 await show_channels(ctx)
@@ -118,7 +118,7 @@ class ReactionsHelper(Bot):
 
         # Reactions
         @self.group(name='reactions')
-        @commands.has_permissions(manage_messages=True)
+        @self.has_permissions()
         async def reactions(ctx: Union[TextChannel, Member]):
             if ctx.invoked_subcommand is None:
                 await show_reactions(ctx)
