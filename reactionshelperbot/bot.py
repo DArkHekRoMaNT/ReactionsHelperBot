@@ -1,9 +1,9 @@
 from asyncio import sleep
 from typing import Union
 
-from discord import Reaction, Member, TextChannel, User, Intents, HTTPException, LoginFailure
+from discord import Member, TextChannel, Intents, HTTPException, LoginFailure, RawReactionActionEvent, NotFound
 from discord.ext import commands
-from discord.ext.commands import Bot, CommandError, UserInputError, CommandNotFound
+from discord.ext.commands import Bot, CommandError, UserInputError
 
 from .flags import *
 from .settings import *
@@ -33,10 +33,19 @@ class ReactionsHelper(Bot):
         else:
             _log.error(str(exception))
 
-    async def on_reaction_add(self, reaction: Reaction, user: Union[Member, User]):
-        if self._config.channels.__contains__(reaction.message.channel.id):
-            if self._config.reactions.__contains__(str(reaction.emoji)):
-                await reaction.message.remove_reaction(reaction, user)
+    @commands.Cog.listener()
+    async def on_raw_reactions_add(self, payload: RawReactionActionEvent):
+        if self._config.channels.__contains__(payload.channel_id):
+            if self._config.reactions.__contains__(payload.emoji):
+                try:
+                    channel = self.get_channel(payload.channel_id)
+                    message = channel.fetch_message(payload.message_id)
+                    for r in message.reactions:
+                        if r.emoji == payload.emoji:
+                            message.clear_reaction(r)
+                            break
+                except NotFound:
+                    pass
 
     @staticmethod
     def has_permissions():
