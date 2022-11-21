@@ -19,6 +19,7 @@ class ReactionsHelper(Bot):
 
         intents = Intents.default()
         intents.messages = True
+        intents.reactions = True
         super().__init__(intents=intents, command_prefix=self._config.command_prefix)
         self.help_command.add_check(self.has_permissions())
 
@@ -34,18 +35,16 @@ class ReactionsHelper(Bot):
             _log.error(str(exception))
 
     @commands.Cog.listener()
-    async def on_raw_reactions_add(self, payload: RawReactionActionEvent):
+    async def on_raw_reaction_add(self, payload: RawReactionActionEvent):
         if self._config.channels.__contains__(payload.channel_id):
-            if self._config.reactions.__contains__(payload.emoji):
-                try:
-                    channel = self.get_channel(payload.channel_id)
-                    message = channel.fetch_message(payload.message_id)
-                    for r in message.reactions:
-                        if r.emoji == payload.emoji:
-                            message.clear_reaction(r)
-                            break
-                except NotFound:
-                    pass
+            try:
+                channel = self.get_channel(payload.channel_id)
+                message = await channel.fetch_message(payload.message_id)
+                for r in message.reactions:
+                    if self._config.reactions.__contains__(r.emoji):
+                        await message.clear_reaction(r)
+            except NotFound:
+                pass
 
     @staticmethod
     def has_permissions():
