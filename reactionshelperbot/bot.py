@@ -36,7 +36,7 @@ class ReactionsHelper(Bot):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: RawReactionActionEvent):
-        if self._config.channels.__contains__(payload.channel_id):
+        if self._config.channels.__contains__(payload.channel_id) or self._config.everywhere:
             try:
                 channel = self.get_channel(payload.channel_id)
                 message = await channel.fetch_message(payload.message_id)
@@ -106,6 +106,11 @@ class ReactionsHelper(Bot):
                 await check_channels(ctx)
                 all_channels = ', '.join(ctx.guild.get_channel(i).name for i in self._config.channels)
                 await ctx.send(f'Channels: {all_channels}')
+
+        @channels.command(name="everywhere")
+        async def toggle_everywhere(ctx: Union[TextChannel, Member]):
+            self._config.everywhere = not self._config.everywhere
+            await ctx.send(f'Everywhere: {self._config.everywhere}')
 
         async def get_channel_by_name(ctx, args):
             try:

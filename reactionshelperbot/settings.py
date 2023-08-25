@@ -12,6 +12,7 @@ class Settings:
         self.channels = list()
         self.command_prefix = '$'
         self.processing_reaction = '⏳'
+        self.everywhere = False
 
     def __str__(self):
         return json.dumps(self, cls=SettingsEncoder, indent=2)
