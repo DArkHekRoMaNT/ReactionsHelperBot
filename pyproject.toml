@@ -1,6 +1,6 @@
 [build-system]
-requires = ["hatchling", "discord~=2.3.2"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=40.8.0", "discord~=2.3.2"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "reactionshelperbot"
