@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling", "discord>=2.3.2"]
+requires = ["hatchling", "discord~=2.3.2"]
 build-backend = "hatchling.build"
 
 [project]
