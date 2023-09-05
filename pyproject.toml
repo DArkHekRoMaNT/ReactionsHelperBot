@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "reactionshelperbot"
-version = "1.1.0"
+version = "1.1.1"
 authors = [
   { name="DArkHekRoMaNT", email="darkhekromant@yandex.ru" },
 ]
