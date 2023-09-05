@@ -5,7 +5,7 @@ Preview: https://youtu.be/BxK2OwG5jsA
 |   |   |
 | --- | --- |
 | Venv (opt) | python3 -m venv .venv <br> source .venv/bin/activate |
-| Install | pip3 install --upgrade pip <br> pip3 install git+https://github.com/DArkHekRoMaNT/ReactionsHelperBot |
+| Install | pip3 install --upgrade pip <br> pip3 install discord>=2.3.2 <br> pip3 install git+https://github.com/DArkHekRoMaNT/ReactionsHelperBot |
 | Remove | pip3 uninstall reactionshelperbot |
 | Run | python3 -m reactionshelperbot |
 
