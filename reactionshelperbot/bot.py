@@ -19,6 +19,7 @@ class ReactionsHelper(Bot):
 
         intents = Intents.default()
         intents.messages = True
+        intents.message_content = True
         intents.reactions = True
         super().__init__(intents=intents, command_prefix=self._config.command_prefix)
         self.help_command.add_check(self.has_permissions())
