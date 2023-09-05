@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=40.8.0", "discord~=2.3.2"]
+requires = ["setuptools>=40.8.0", "discord>=2.3.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
