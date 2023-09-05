@@ -1,16 +1,16 @@
 [build-system]
-requires = ["setuptools>=40.8.0", "discord>=1.7.3"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling", "discord>=2.3.2"]
+build-backend = "hatchling.build"
 
 [project]
 name = "reactionshelperbot"
-version = "1.0.7"
+version = "1.1.0"
 authors = [
   { name="DArkHekRoMaNT", email="darkhekromant@yandex.ru" },
 ]
 description = "Discord Bot"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
